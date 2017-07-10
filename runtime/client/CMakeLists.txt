@@ -1,11 +1,11 @@
 cmake_minimum_required (VERSION 2.8)
 project (EXE_Lithtech)
-
+cmake_policy(SET CMP0015 NEW)
 add_definitions(-DDE_LOCAL_SERVERBIND -DDE_CLIENT_COMPILE -DDSNDMGR_NO_MFC -DDIRECTENGINE_COMPILE -DMODEL_SUPPORT_ABC)
 if(CMAKE_CL_64)
-	link_directories("C:\\Program Files (x86)\\Microsoft DirectX SDK (February 2006)\\Lib\\x64")
+	link_directories("../../vendor/dxsdk_aug2007/Lib/x64")
 else(CMAKE_CL_64)
-	link_directories("C:\\Program Files (x86)\\Microsoft DirectX SDK (February 2006)\\Lib\\x86")
+	link_directories("../../vendor/dxsdk_aug2007/Lib/x86")
 endif(CMAKE_CL_64)
 	
 add_executable (EXE_Lithtech WIN32
@@ -218,7 +218,7 @@ endif(WIN32)
 
 if(ENABLE_DIRECTX)	# FIXME: set to find DirectX path
 	include_directories(../../libs/Lib_DShow
-		"C:\\Program Files (x86)\\Microsoft DirectX SDK (February 2006)\\Include")
+		"../../vendor/dxsdk_aug2007/Include")
 		#if(CMAKE_CL_64)
 		#	link_directories("C:\\Program Files (x86)\\Microsoft DirectX SDK (February 2006)\\Lib\\x64")
 		#else(CMAKE_CL_64)
