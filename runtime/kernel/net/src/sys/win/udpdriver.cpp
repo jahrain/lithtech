@@ -1812,7 +1812,7 @@ bool udp_RecvFromSocket(SOCKET theSocket, CPacket_Read *pPacket, sockaddr_in *pS
 #ifdef __LINUX
 		if (errno != EWOULDBLOCK)
 #else
-		if (WSAGetLastError() != EWOULDBLOCK)
+		if (WSAGetLastError() != _EWOULDBLOCK)
 #endif
 		{
 			if(g_CV_UDPDebug > 1)
@@ -2850,12 +2850,12 @@ bool CUDPDriver::SendPacket(const CPacket_Read &cPacket, CBaseConn *idSendTo, bo
 #endif
 		{
 			// if the guy on the other end is gone, kill the RCC
-			case ECONNRESET:
+			case _ECONNRESET:
 				Disconnect(pConn, DISCONNECTREASON_DEAD, true);
 				break;
 			// if the socket send/output buffer if full we should try again later
 			// rather than timing out waiting for the ACK.
-			case EWOULDBLOCK:
+			case _EWOULDBLOCK:
 				return false;
 		}
 	}
@@ -3824,7 +3824,7 @@ uint32 CUDPDriver::Thread_Listen()
 
 			}
 			// Go to sleep if there's nothing waiting on the line
-			else if (nRecvStatus == EWOULDBLOCK)
+			else if (nRecvStatus == _EWOULDBLOCK)
 			{
 				// Reset the read state
 				fd_set aReadSet;
@@ -3862,7 +3862,7 @@ uint32 CUDPDriver::Thread_Listen()
 					break;
 				}
 			}	
-			else if (nRecvStatus != ECONNRESET) 
+			else if (nRecvStatus != _ECONNRESET) 
 			{
 				// someone is playing with our server sending zero length messages or too large of messages 
 				if ( !nRecvStatus ||

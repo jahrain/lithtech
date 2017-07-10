@@ -451,7 +451,7 @@ AINode* CAIGoalAttack::HandleGoalAttractors()
 			// If one is found, this goal activates.
 			for(uint32 iAttractor=0; iAttractor < pTemplate->cAttractors; ++iAttractor)
 			{
-				pNode = FindNearestAttractorNode(pTemplate->aAttractors[iAttractor], m_pAI->GetPosition(), pTemplate->fAttractorDistSqr * m_fBaseImportance);
+				pNode = FindNearestAttractorNode((EnumAINodeType)pTemplate->aAttractors[iAttractor], m_pAI->GetPosition(), pTemplate->fAttractorDistSqr * m_fBaseImportance);
 				if(pNode != LTNULL)	
 				{
 					if ( !IsPathToNodeValid(pNode) )

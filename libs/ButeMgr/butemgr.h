@@ -21,6 +21,7 @@
 #include <map>
 #include <set>
 #include <functional>
+#define _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS 1
 #include <hash_set>
 #include <hash_map>
 #if _MSC_VER >= 1300

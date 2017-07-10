@@ -870,7 +870,7 @@ int CRelationUser::Save(ILTMessage_Write *pMsg)
 	// Save each of the Active Relationships
 	std::for_each( m_Momentos.begin(),
 		m_Momentos.end(),
-		std::bind2nd( std::mem_fun1(&RelationMomento::Save), pMsg ));
+		std::bind2nd( std::mem_fn(&RelationMomento::Save), pMsg ));
 
 	SAVE_TIME( m_flTimeRelationsLast );
 

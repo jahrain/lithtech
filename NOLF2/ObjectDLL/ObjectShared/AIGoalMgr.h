@@ -30,7 +30,7 @@ typedef std::vector<CAIGoalAbstract*> AIGOAL_LIST;
 //
 // VECTOR: List of queued goals.
 //
-typedef std::vector<EnumAIGoalType> QUEUED_AIGOAL_LIST;
+typedef std::vector<int> QUEUED_AIGOAL_LIST;
 typedef std::vector<HSTRING> QUEUED_AIGOAL_ARG_LIST;
 
 //

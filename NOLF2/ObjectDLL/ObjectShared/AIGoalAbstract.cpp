@@ -531,11 +531,11 @@ AINode* CAIGoalAbstract::FindGoalAttractors(LTBOOL bRequiresOwner, HOBJECT hOwne
 		if( bRequiresOwner )
 		{
 			// Find nearest owned node.
-			pNode = g_pAINodeMgr->FindRandomOwnedNode(m_pAI, pTemplate->aAttractors[iAttractor], hOwner);
+			pNode = g_pAINodeMgr->FindRandomOwnedNode(m_pAI, (EnumAINodeType)pTemplate->aAttractors[iAttractor], hOwner);
 		}
 		else {
 			// Find nearest UNowned node.
-			pNode = g_pAINodeMgr->FindNearestNodeInRadius(m_pAI, pTemplate->aAttractors[iAttractor], m_pAI->GetPosition(), pTemplate->fAttractorDistSqr * m_fBaseImportance, LTTRUE);
+			pNode = g_pAINodeMgr->FindNearestNodeInRadius(m_pAI, (EnumAINodeType)pTemplate->aAttractors[iAttractor], m_pAI->GetPosition(), pTemplate->fAttractorDistSqr * m_fBaseImportance, LTTRUE);
 		}
 
 		if(pNode != LTNULL)

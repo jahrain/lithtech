@@ -20,9 +20,8 @@
 class  CAIGoalButeMgr;
 struct AIGBM_GoalSet;
 struct AIGBM_SmartObjectTemplate;
-enum EnumAIGoalType;
-enum EnumAINodeType;
-enum EnumAIStateType;
+
+
 
 // Globals.
 extern CAIGoalButeMgr* g_pAIGoalButeMgr;
@@ -43,7 +42,7 @@ struct SGoalSetData
 	HSTRING hstrParams;
 };
 
-typedef std::map<EnumAIGoalType, SGoalSetData> AIGOAL_DATA_MAP;
+typedef std::map<int, SGoalSetData> AIGOAL_DATA_MAP;
 typedef std::vector<AIGBM_GoalSet*> AIGOAL_SET_LIST;
 typedef std::vector<int> AIBRAIN_LIST;
 
@@ -80,7 +79,7 @@ struct AIGBM_GoalTemplate
 	LTFLOAT	fUpdateRate;			// Rate to update Importance.
 	uint32	flagSenseTriggers;		// Senses that trigger Goal.
 	uint32	cAttractors;			// Number of attractors that activate Goal.
-	EnumAINodeType* aAttractors;	// Attractors that activate Goal.
+	int* aAttractors;	// Attractors that activate Goal.
 	LTFLOAT	fAttractorDistSqr;		// Squared distance from AI to search for Attractors.
 	LTBOOL	bDeleteOnDeactivation;	// If true, goal is deleted after it deactivates.
 	LTFLOAT fChanceToActivate;		// % chance of activating when criteria met.
@@ -93,9 +92,9 @@ struct AIGBM_GoalTemplate
 //
 // STRUCT: SmartObject Template. 
 //
-typedef std::map<EnumAINodeType, HSTRING> SMART_OBJECT_CMD_MAP;
+typedef std::map<int, HSTRING> SMART_OBJECT_CMD_MAP;
 typedef std::vector<AIGBM_SmartObjectTemplate*> SMART_OBJECT_LIST;
-typedef std::multimap<EnumAIStateType, EnumAINodeType> SMART_OBJECT_ACTIVE_CMD_MAP;
+typedef std::multimap<int, int> SMART_OBJECT_ACTIVE_CMD_MAP;
 
 struct AIChildModelInfo 
 {
@@ -141,7 +140,7 @@ class CAIGoalButeMgr : public CGameButeMgr
 
 		// Templates
 
-		AIGBM_GoalTemplate* GetTemplate(const EnumAIGoalType eGoalType) { return &m_aTemplates[eGoalType]; }
+		AIGBM_GoalTemplate* GetTemplate(const int eGoalType) { return &m_aTemplates[eGoalType]; }
 
 		uint32				GetNumGoalSets() const { return m_lstGoalSets.size(); }
 		uint32				GetGoalSetIndex(const char* szGoalSetName);
@@ -159,7 +158,7 @@ class CAIGoalButeMgr : public CGameButeMgr
 		void				ReadGoalTemplate(uint32 iTemplate);
 		void				ReadSmartObjectTemplate(uint32 nID);
 
-		EnumAIGoalType		ConvertToGoalTypeEnum(char* szGoalType);
+		int					ConvertToGoalTypeEnum(char* szGoalType);
 
 		void				GetBitFlagItems(uint32* flags, const char* szAttribute, const uint32 nNumFlags, 
 											const char** aszFlags);

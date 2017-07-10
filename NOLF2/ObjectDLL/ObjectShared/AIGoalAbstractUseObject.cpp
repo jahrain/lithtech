@@ -197,7 +197,7 @@ void CAIGoalAbstractUseObject::SetStateUseObject()
 	HSTRING hstrCmd;
 	for(uint32 iAttractor=0; iAttractor < pTemplate->cAttractors; ++iAttractor)
 	{
-		hstrCmd = pNodeUseObject->GetSmartObjectCommand(pTemplate->aAttractors[iAttractor]);
+		hstrCmd = pNodeUseObject->GetSmartObjectCommand((EnumAINodeType)pTemplate->aAttractors[iAttractor]);
 		if(hstrCmd != LTNULL)
 		{
 			pStateUseObject->SetSmartObjectCommand(hstrCmd);

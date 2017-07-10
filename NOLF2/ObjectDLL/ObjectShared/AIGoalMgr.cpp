@@ -464,7 +464,7 @@ void CAIGoalMgr::SetGoalSet(uint32 iGoalSet, LTBOOL bClearGoals)
 		{
 			gsd = it->second;
 			pGoalTemplate = g_pAIGoalButeMgr->GetTemplate(it->first);
-			pGoal = AddGoal(it->first, pGoalTemplate->fImportance, fTime, LTFALSE);
+			pGoal = AddGoal((EnumAIGoalType)it->first, pGoalTemplate->fImportance, fTime, LTFALSE);
 
 			pGoal->SetPermanentGoal( bPermanent );
 
@@ -606,7 +606,7 @@ void CAIGoalMgr::AddQueuedGoals()
 	qgait = m_lstQueuedGoalArgs.begin();
 	for(qgit = m_lstQueuedGoals.begin(); qgit != m_lstQueuedGoals.end(); ++qgit)
 	{
-		eGoalType = *qgit;
+		eGoalType = (EnumAIGoalType)*qgit;
 		hstrGoalArgs = *qgait;
 
 		AIGBM_GoalTemplate* pGoalTemplate = g_pAIGoalButeMgr->GetTemplate( eGoalType );
@@ -669,7 +669,7 @@ void CAIGoalMgr::RunQueuedPrefixGoalCommands()
 	qgait = m_lstQueuedPrefixCmdGoalArgs.begin();
 	for(qgit = m_lstQueuedPrefixCmdGoals.begin(); qgit != m_lstQueuedPrefixCmdGoals.end(); ++qgit)
 	{
-		eGoalType = *qgit;
+		eGoalType = (EnumAIGoalType)*qgit;
 		hstrGoalArgs = *qgait;
 
 		pGoal = FindGoalByType( eGoalType );

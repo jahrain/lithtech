@@ -309,7 +309,7 @@ void CAIGoalButeMgr::ReadGoalSet()
 
 		// First token is AIGoalType.
 		tok = strtok(szGoalString, " ");
-		eGoalType = ConvertToGoalTypeEnum(tok);
+		eGoalType = (EnumAIGoalType)ConvertToGoalTypeEnum(tok);
 
 		// All following tokens are parameters.
 		gsd.hstrParams = LTNULL;
@@ -337,7 +337,7 @@ void CAIGoalButeMgr::ReadGoalSet()
 //
 // ----------------------------------------------------------------------- //
 
-EnumAIGoalType CAIGoalButeMgr::ConvertToGoalTypeEnum(char* szGoalType)
+int CAIGoalButeMgr::ConvertToGoalTypeEnum(char* szGoalType)
 {
 	// Look for goal name in enum list.
 	uint32 iGoalType;
@@ -550,7 +550,7 @@ void CAIGoalButeMgr::ReadSmartObjectTemplate(uint32 nID)
 			SMART_OBJECT_CMD_MAP::iterator it;
 			for( it = pSmartObject->mapCmds.begin(); it != pSmartObject->mapCmds.end(); ++it )
 			{
-				eNodeType = it->first;
+				eNodeType = (EnumAINodeType)it->first;
 				pSmartObject->mapActiveCmds.insert( SMART_OBJECT_ACTIVE_CMD_MAP::value_type( kState_SmartObjectDefault, eNodeType ) );
 			}
 		}

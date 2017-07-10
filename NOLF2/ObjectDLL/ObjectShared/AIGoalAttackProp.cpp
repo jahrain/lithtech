@@ -209,7 +209,7 @@ AINode* CAIGoalAttackProp::HandleGoalAttractors()
 			AINode* pNode;
 			for(uint32 iAttractor=0; iAttractor < pTemplate->cAttractors; ++iAttractor)
 			{
-				pNode = g_pAINodeMgr->FindNearestNodeInRadius(m_pAI, pTemplate->aAttractors[iAttractor], m_pAI->GetPosition(), pTemplate->fAttractorDistSqr * m_fBaseImportance, LTTRUE);
+				pNode = g_pAINodeMgr->FindNearestNodeInRadius(m_pAI, (EnumAINodeType)pTemplate->aAttractors[iAttractor], m_pAI->GetPosition(), pTemplate->fAttractorDistSqr * m_fBaseImportance, LTTRUE);
 				if(pNode != LTNULL)
 				{
 					HOBJECT hObject;
