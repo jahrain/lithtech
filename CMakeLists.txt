@@ -41,6 +41,7 @@ endif(WIN32)
 
 if(MSVC)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+    add_definitions(/MP)
 endif(MSVC)
 
 if(DEBUG)
